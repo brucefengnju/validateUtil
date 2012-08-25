@@ -28,6 +28,24 @@
     bruceValidate.isNull = function(value){
         return value==null;
     };
+    bruceValidate.isBlank = function(value){
+        if(typeof value == 'undefined') return true;
+        return bruceValidate.trim(value) == "";
+
+    }
+    bruceValidate.checkPassword = function(pwd,checkPwd){
+        pwd = bruceValidate.trim(pwd);
+        checkPwd = bruceValidate.trim(checkPwd);
+        if(pwd ==""||checkPwd=="") return false;
+        return pwd == checkPwd;
+
+    };
+    bruceValidate.isvalidLength = function(value,min,max){
+        value = bruceValidate.trim(value);
+        var length = value.length;
+        return length >= min && length <= max;
+
+    };
     bruceValidate.isValidDate = function(year,month,day){
         month -= 1;
         try {
