@@ -1,6 +1,6 @@
-# brucevalidate.js
+# validateUtil
 
-brucevalidate.js a JavaScript library for web form validation.
+validateUtil is a JavaScript library for web form validation.
 
 ## Features
 
