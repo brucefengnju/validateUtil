@@ -11,4 +11,4 @@ validateUtil is a JavaScript library for web form validation.
 
 ## Documentation
 
-You can view everything at https://github.com/brucefengnju/brucevalidate/blob/master/brucevalidate.js
+You can view everything at https://github.com/brucefengnju/validateUtil
