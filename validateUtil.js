@@ -19,34 +19,34 @@
         ipRegex = /^((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})$/,
         decimalRegex = /^\-?[0-9]*\.?[0-9]+$/;
 
-    var bruceValidate = new Object();
+    var validateUtil = new Object();
    
-    bruceValidate.trim = function(value){
+    validateUtil.trim = function(value){
         if(typeof value == "undefined") return null;
         return value==null? "":value.toString().replace(/^\s\s*/, '').replace(/\s\s*$/, '');
     };
-    bruceValidate.isNull = function(value){
+    validateUtil.isNull = function(value){
         return value==null;
     };
-    bruceValidate.isBlank = function(value){
+    validateUtil.isBlank = function(value){
         if(typeof value == 'undefined') return true;
-        return bruceValidate.trim(value) == "";
+        return validateUtil.trim(value) == "";
 
     }
-    bruceValidate.checkPassword = function(pwd,checkPwd){
-        pwd = bruceValidate.trim(pwd);
-        checkPwd = bruceValidate.trim(checkPwd);
+    validateUtil.checkPassword = function(pwd,checkPwd){
+        pwd = validateUtil.trim(pwd);
+        checkPwd = validateUtil.trim(checkPwd);
         if(pwd ==""||checkPwd=="") return false;
         return pwd == checkPwd;
 
     };
-    bruceValidate.isvalidLength = function(value,min,max){
-        value = bruceValidate.trim(value);
+    validateUtil.isvalidLength = function(value,min,max){
+        value = validateUtil.trim(value);
         var length = value.length;
         return length >= min && length <= max;
 
     };
-    bruceValidate.isValidDate = function(year,month,day){
+    validateUtil.isValidDate = function(year,month,day){
         month -= 1;
         try {
             var dt = new Date(year, month, day);
@@ -65,7 +65,7 @@
 
         return true;
     };
-    bruceValidate.isValidDatetime = function(year,month,day,hour,minute,second){
+    validateUtil.isValidDatetime = function(year,month,day,hour,minute,second){
         month -= 1;
         hour = hour || 0;
         minute = minute || 0;
@@ -96,21 +96,21 @@
 
         return true;
     };
-    bruceValidate.isDate = function(value){
+    validateUtil.isDate = function(value){
         if(typeof value == "undefined") return false;
-        value = bruceValidate.trim(value);
+        value = validateUtil.trim(value);
         var date;
         if(datetimeRegex.test(value)){
             date = datetimeRegex.exec(value);
             if(date[7]==':') return false;
-            return bruceValidate.isValidDatetime(date[1],date[3],date[4],date[5],date[6],date[8]);
+            return validateUtil.isValidDatetime(date[1],date[3],date[4],date[5],date[6],date[8]);
         }else if(dateRegex.test(value)){
             date = dateRegex.exec(value);
-            return bruceValidate.isValidDate(date[1],date[3],date[4]);
+            return validateUtil.isValidDate(date[1],date[3],date[4]);
         }
         return false;
     };
-    bruceValidate.isPositiveNumber = function(value){
+    validateUtil.isPositiveNumber = function(value){
        if(typeof value == "undefined") return false;
        value = BrucefengValidate.trim(value);
       
@@ -120,7 +120,7 @@
        }
        return false;
     };
-    bruceValidate.isZero = function(value){
+    validateUtil.isZero = function(value){
        if(typeof value == "undefined") return false;
        value = BrucefengValidate.trim(value);
       
@@ -131,67 +131,67 @@
        return false;
 
     };
-    bruceValidate.isNatureNumber = function(value){
+    validateUtil.isNatureNumber = function(value){
         if(typeof value == "undefined") return false;
-        return natureNumberRegex.test(bruceValidate.trim(value));
+        return natureNumberRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isNegtiveNumber = function(value){
+    validateUtil.isNegtiveNumber = function(value){
         if(typeof value == "undefined") return false;
-        return negtiveNumberRegex.test(bruceValidate.trim(value));
+        return negtiveNumberRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isPositiveInt = function(value){
+    validateUtil.isPositiveInt = function(value){
         if(typeof value == "undefined") return false;
-        return positiveIntRegex.test(bruceValidate.trim(value));
+        return positiveIntRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isNegtiveInt = function(value){
+    validateUtil.isNegtiveInt = function(value){
         if(typeof value == 'undefined') return false;
-        return negtiveIntRegex.test(bruceValidate.trim(value));
+        return negtiveIntRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isEmail = function(value){
+    validateUtil.isEmail = function(value){
         if(typeof value == 'undefined') return false;
-        return emailRegex.test(bruceValidate.trim(value));
+        return emailRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isMobile = function(value){
+    validateUtil.isMobile = function(value){
         if(typeof value == 'undefined') return false;
-        return mobileRegex.test(bruceValidate.trim(value));
+        return mobileRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isCert = function(value){
+    validateUtil.isCert = function(value){
         if(typeof value == 'undefined') return false;
-        return certRegex.test(bruceValidate.trim(value));
+        return certRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isPostCode = function(value){
+    validateUtil.isPostCode = function(value){
         if(typeof value == 'undefined') return false;
-        return postCodeRegex.test(bruceValidate.trim(value));
+        return postCodeRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isTelFax = function(value){
+    validateUtil.isTelFax = function(value){
         if(typeof value == 'undefined') return false;
-        return telFaxRegex.test(bruceValidate.trim(value));
+        return telFaxRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isBirthday = function(value){
+    validateUtil.isBirthday = function(value){
         if(typeof value == 'undefined') return false;
-        return birthdayRegex.test(bruceValidate.trim(value));
+        return birthdayRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isSpecialString = function(value){
+    validateUtil.isSpecialString = function(value){
         if(typeof value == 'undefined') return false;
-        return specialStringRegex.test(bruceValidate.trim(value));
+        return specialStringRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isBankNumber = function(value){
+    validateUtil.isBankNumber = function(value){
         if(typeof value == 'undefined') return false;
-        return bankNumberRegex.test(bruceValidate.trim(value));
+        return bankNumberRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isIdentityCard = function(value){
+    validateUtil.isIdentityCard = function(value){
         if(typeof value == 'undefined') return false;
-        return identityCardRegex.test(bruceValidate.trim(value));
+        return identityCardRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isIp = function(value){
+    validateUtil.isIp = function(value){
         if(typeof value == 'undefined') return false;
-        return ipRegex.test(bruceValidate.trim(value));
+        return ipRegex.test(validateUtil.trim(value));
     };
-    bruceValidate.isDecial = function(value){
+    validateUtil.isDecial = function(value){
         if(typeof value == 'undefined') return false;
-        return decimalRegex.test(bruceValidate.trim(value));
+        return decimalRegex.test(validateUtil.trim(value));
     };
 
-    window.bruceValidate = bruceValidate;
+    window.validateUtil = validateUtil;
 
 })(window);
